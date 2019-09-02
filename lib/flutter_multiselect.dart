@@ -19,6 +19,9 @@ class MultiSelect extends FormField<dynamic> {
   final Widget leading;
   final Widget trailing;
   final int maxLength;
+  final String selectedTitle;
+  final String cancleTitle;
+  final String saveTitle;
   MultiSelect(
       {FormFieldSetter<dynamic> onSaved,
       FormFieldValidator<dynamic> validator,
@@ -38,7 +41,10 @@ class MultiSelect extends FormField<dynamic> {
       this.open,
       this.close,
       this.trailing,
-      this.maxLength})
+      this.maxLength,
+      this.selectedTitle = '当前已选择(点击删除)',
+      this.cancleTitle = '取消',
+      this.saveTitle = '确认'})
       : super(
             onSaved: onSaved,
             validator: validator,
@@ -77,7 +83,11 @@ class MultiSelect extends FormField<dynamic> {
                               textField: textField,
                               dataSource: dataSource,
                               values: state.value ?? [],
-                              maxLength: maxLength ?? dataSource?.length),
+                              maxLength: maxLength ?? dataSource?.length,
+                              selectedTitle: selectedTitle,
+                              cancleTitle: cancleTitle,
+                              saveTitle: saveTitle,
+                          ),
                           fullscreenDialog: true,
                         ));
 

@@ -11,6 +11,9 @@ class SelectionModal extends StatefulWidget {
   final String valueField;
   final String title;
   final int maxLength;
+  final String selectedTitle;
+  final String cancleTitle;
+  final String saveTitle;
   
   SelectionModal(
       {this.filterable,
@@ -19,7 +22,10 @@ class SelectionModal extends StatefulWidget {
       this.values,
       this.textField,
       this.valueField,
-      this.maxLength})
+      this.maxLength,
+      this.selectedTitle = '当前已选择(点击删除)',
+      this.cancleTitle = '取消',
+      this.saveTitle = '确认'})
       : super();
 }
 
@@ -102,7 +108,7 @@ class _SelectionModalState extends State<SelectionModal> {
                   ButtonTheme(
                     height: 50.0,
                     child: RaisedButton.icon(
-                      label: Text('Cancel'),
+                      label: Text(widget.cancleTitle),
                       icon: Icon(
                         Icons.clear,
                         size: 20.0,
@@ -116,7 +122,7 @@ class _SelectionModalState extends State<SelectionModal> {
                   ButtonTheme(
                     height: 50.0,
                     child: RaisedButton.icon(
-                      label: Text('Save'),
+                      label: Text(widget.saveTitle),
                       icon: Icon(
                         Icons.save,
                         size: 20.0,
@@ -179,7 +185,8 @@ class _SelectionModalState extends State<SelectionModal> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 new Text(
-                  'Currently selected ${selectedOptions.length} items (tap to remove)', // use languageService here
+//                  'Currently selected ${selectedOptions.length} items (tap to remove)', // use languageService here
+                  widget.selectedTitle,
                   style: TextStyle(
                       color: Colors.black87, fontWeight: FontWeight.bold),
                 ),
